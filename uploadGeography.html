@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        span{
+            margin-left: 20px;
+            display: inline-block;
+            width:150px;
+        }
+        input{
+            margin:20px;
+        }
+    </style>
+</head>
+<body>
+<form action="http://127.0.0.1:8081/admin/uploadNewGeography" method="post">
+    <span>地理名字</span><input type="text" name="geographyName" id="geographyName"><br />
+    <span>类型</span><input type="text" name="geographyType" id="geographyType"><br />
+    <span>图片</span><input type="text" name="geographyImg" id="geographyImg"><br />
+    <span>详细信息</span><textarea name="geographyIntro" id="geographyIntro" rows="20" cols="50"></textarea><br />
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

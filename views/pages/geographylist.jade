@@ -1,0 +1,34 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 地理列表
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/geographylist.css" rel="stylesheet")
+    body
+        div.main-container
+            h1 地理列表页
+                a(href="http://127.0.0.1:8081") 返回首页
+            div.world-map
+                img(src="/public/img/world/worldmap.png", width="800", height="600", alt="world", usemap="#worldmap")
+                map(name="worldmap")
+                    area(shape="rect", coords="150,365,800,600", alt="arad", href="http://127.0.0.1:8081/geography/阿拉德大陆")
+                    area(shape="rect", coords="0,365,135,600", alt="arad", href="http://127.0.0.1:8081/geography/镜像阿拉德")
+                    area(shape="rect", coords="0,145,800,320", alt="arad", href="http://127.0.0.1:8081/geography/天界")
+                    area(shape="rect", coords="0,0,800,140", alt="arad", href="http://127.0.0.1:8081/geography/魔界")
+            table
+                thead
+                    tr
+                        th(class="geographyList-name") 名字
+                        th(class="geographyList-type") 类型
+                tbody
+                    each geography in result
+                        tr(class="geography-id-"+geography.id)
+                            td
+                                a(href="http://127.0.0.1:8081/geography/#{geography.name}") #{geography.name}
+                            td #{geography.type}
+            span(id="inside")
+
+

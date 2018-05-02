@@ -1,0 +1,18 @@
+html{
+  background: #000;
+  background:url("/public/img/Dnfbg.jpg") no-repeat fixed;
+}
+a{
+  cursor: url("/public/img/5.png"),auto;
+}
+.main-container{
+  width:1200px;
+  margin:0 auto;
+  min-height: 800px;
+  background:rgba(50,50,50,0.8);
+  box-shadow: 0 0 20px #fff;
+  padding-bottom: 50px;
+}
+p{
+  white-space: pre-line;
+}

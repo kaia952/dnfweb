@@ -1,0 +1,70 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 人物列表
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/characterlist.css" rel="stylesheet")
+    body
+        div.main-container
+            h1 人物列表页
+                a(href="http://127.0.0.1:8081") 返回首页
+            div.sort.clearfix
+                //form(action="http://127.0.0.1:8081/sortCharacter", id="sortCharacterForm")
+                //    input(type="checkbox", name="gender", value="男")
+                //    span 男性
+                //    input(type="checkbox", name="gender", value="女")
+                //    span 女性
+                //    input(type="submit" value="search")
+                div.sort-description
+                    span 筛选
+                div.sort-options
+                    div.clearfix
+                        div.sort-title 性别：
+                        div.sort-gender.sort-option 男性
+                        div.sort-gender.sort-option 女性
+                    div.clearfix
+                        div.sort-title 种族：
+                        div.sort-species.sort-option 人类
+                        div.sort-species.sort-option 天族
+                        div.sort-species.sort-option 精灵
+                        div.sort-species.sort-option 暗精灵
+                        div.sort-species.sort-option 魔族
+                        div.sort-species.sort-option 其他
+                    div.clearfix
+                        div.sort-title 阵营：
+                        div.sort-faction.sort-option 贝尔玛尔公国
+                        div.sort-faction.sort-option 暗精灵王国
+                        div.sort-faction.sort-option 德洛斯帝国
+                        div.sort-faction.sort-option 班图族
+                        div.sort-faction.sort-option 虚祖
+                        div.sort-faction.sort-option 根特
+                        div.sort-faction.sort-option 魔界
+                        div.sort-faction.sort-option 其他
+            table.character-table
+                thead
+                    tr
+                        th(class="characterList-name") 名字
+                        th(class="characterList-species") 种族
+                        th(class="characterList-gender") 性别
+                        th(class="characterList-img") 图片
+                        th(class="characterList-faction") 阵营
+                        th(class="characterList-position") 位置
+                        th(class="characterList-summary") 简介
+                tbody
+                    each character in result
+                        tr(class="character-id-"+character.id)
+                            td
+                                a(href="http://127.0.0.1:8081/character/#{character.name}") #{character.name}
+                            td #{character.species}
+                            td #{character.gender}
+                            td
+                                img(src="#{character.imgsrc}")
+                            td #{character.faction}
+                            td #{character.position}
+                            td #{character.summary}
+            div(id="inside")
+        script(src="/public/js/characterlist.js")
+

@@ -1,0 +1,23 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 地理详情
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        //link(href="/public/css/characterlist.css" rel="stylesheet")
+        link(href="/public/css/geography.css" rel="stylesheet")
+    body
+        div.main-container
+            each geography in result
+                div.geography-title
+                    h1 #{geography.name}
+                div.content.clearfix
+                    div.part.clearfix
+                        img(src="#{geography.imgsrc}")
+                    div.part.part-intro
+                        h2 介绍
+                        p.intro #{geography.intro}
+        script(src="/public/js/geography.js")
+

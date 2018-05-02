@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="/public/css/reset.css" rel="stylesheet">
+    <link href="/public/css/common.css" rel="stylesheet">
+    <link href="/public/css/index.css" rel="stylesheet">
+    <script src="/public/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="main-container">
+    <div class="title"><h1>欢迎访问资料站首页！</h1></div>
+
+    <div class="middle-part clearfix">
+        <div class="img-roll-container"><!--------------轮播图450*270--------------->
+            <div class="img-container clearfix">
+                <div class="img-roll-item img-active"><a href="http://dnf.qq.com/cp/a20180426version/page1.html"><img src="/public/img/img-roll-1.jpg" alt=""></a></div>
+                <div class="img-roll-item"><a href="http://dnf.qq.com/cp/a20180426pack/?e_code=407688&idataid=210113"><img src="/public/img/img-roll-2.jpg" alt=""></a></div>
+                <div class="img-roll-item"><a href="http://dnf.qq.com/cp/a20180426lucky/page1.html"><img src="/public/img/img-roll-3.jpg" alt=""></a></div>
+                <div class="img-roll-item"><a href="http://dnf.qq.com/cp/a20180426time/?e_code=407685&idataid=210109"><img src="/public/img/img-roll-4.jpg" alt=""></a></div>
+                <div class="img-roll-item img-active"><a href="http://dnf.qq.com/cp/a20180426version/page1.html"><img src="/public/img/img-roll-1.jpg" alt=""></a></div>
+            </div>
+            <div class="select-bar">
+                <div class="select-bar-item select-bar-active"></div>
+                <div class="select-bar-item"></div>
+                <div class="select-bar-item"></div>
+                <div class="select-bar-item"></div>
+            </div>
+        </div>
+        <div class="nav-part">
+            <form action="http://127.0.0.1:8081/search" method="get">
+                <span>搜索：</span><input type="text" name="searchInfo" id="searchInfo" />
+                <select name="searchType1" id="searchType1">
+                    <option value="character">人物</option>
+                    <option value="geography">地理</option>
+                    <option value="dungeon">地下城</option>
+                    <option value="events">事件</option>
+                </select>
+                <select name="searchTypeCharacter" id="searchTypeCharacter">
+                    <option value="name">名字</option>
+                    <option value="species">种族</option>
+                    <option value="faction">阵营</option>
+                    <option value="position">位置</option>
+                </select>
+                <input type="submit" value="开始搜索">
+            </form>
+        </div>
+    </div>
+
+    <div class="options-link clearfix">
+        <div class="option-wrapper character">
+            <div class="option-title">人物介绍</div>
+            <div class="link-img">
+                <a href="http://127.0.0.1:8081/characterlist"></a>
+            </div>
+            <div class="summary">
+                <span>你想了解的有关<br />阿拉德的人物...</span>
+            </div>
+            <div class="more"><a href="http://127.0.0.1:8081/characterlist">查看更多</a></div>
+        </div>
+        <div class="option-wrapper geography">
+            <div class="option-title">地理介绍</div>
+            <div class="link-img">
+                <a href="http://127.0.0.1:8081/geographylist"></a>
+            </div>
+            <div class="summary">
+                <span>你想了解的有关<br />阿拉德的地理...</span>
+            </div>
+            <div class="more"><a href="http://127.0.0.1:8081/geographylist">查看更多</a></div>
+        </div>
+        <div class="option-wrapper dungeon">
+            <div class="option-title">地下城介绍</div>
+            <div class="link-img">
+                <a href="http://127.0.0.1:8081/dungeonlist"></a>
+            </div>
+            <div class="summary">
+                <span>你想了解的有关<br />阿拉德的地下城...</span>
+            </div>
+            <div class="more"><a href="http://127.0.0.1:8081/dungeonlist">查看更多</a></div>
+        </div>
+        <div class="option-wrapper events">
+            <div class="option-title">事件介绍</div>
+            <div class="link-img">
+                <a href="http://127.0.0.1:8081/eventslist"></a>
+            </div>
+            <div class="summary">
+                <span>你想了解的有关<br />阿拉德的事件...</span>
+            </div>
+            <div class="more"><a href="http://127.0.0.1:8081/eventlist">查看更多</a></div>
+        </div>
+    </div>
+</div>
+<script src="/public/js/index-img-roll.js"></script>
+<script src="/public/js/index-search-part.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 人物详情
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        //link(href="/public/css/characterlist.css" rel="stylesheet")
+        link(href="/public/css/character.css" rel="stylesheet")
+    body
+        div.main-container
+            each character in result
+                div.character-title.clearfix
+                    h1 #{character.name}
+                    a(href="http://127.0.0.1:8081/characterlist") 返回人物列表
+                div.content.clearfix
+                    div.part.clearfix
+                        img(src="#{character.imgsrc}")
+                        if (character.imgFavorM)
+                            img(src="#{character.imgFavorM}")
+                        if (character.imgFavorH)
+                            img(src="#{character.imgFavorH}")
+                        ul.info-list
+                            li
+                                span 种族：
+                                span #{character.species}
+                            li
+                                span 性别：
+                                span #{character.gender}
+                            li
+                                span 阵营：
+                                span #{character.faction}
+                            li
+                                span 位置：
+                                span #{character.position}
+                    div.part.part-intro
+                        h2 介绍
+                        p.intro #{character.intro}
+                    if (character.dialog)
+                        div.part.part-dialog
+                            h2 城镇对话
+                            each dialogitem in character.dialog
+                                p.dialog-item #{dialogitem}
+        script(src="/public/js/character.js")
+

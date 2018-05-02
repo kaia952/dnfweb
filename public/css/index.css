@@ -1,0 +1,166 @@
+@charset "UTF-8";
+.title {
+  width: 1200px;
+  padding: 30px 0;
+}
+.title h1 {
+  text-align: center;
+  background: brown;
+}
+
+.options-link {
+  width: 1200px;
+  height: 600px;
+}
+
+.option-wrapper {
+  width: 250px;
+  height: 500px;
+  margin: 40px 0 40px 40px;
+  float: left;
+  background: url("/public/img/bg1.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.character .link-img {
+  background: url("/public/img/dvildom.png") -100px -100px;
+  background-size: 600px 450px;
+}
+
+.geography .link-img {
+  background: url("/public/img/crackofdimension.png") -100px -100px;
+  background-size: 600px 450px;
+}
+
+.dungeon .link-img {
+  background: url("/public/img/anton.png") -200px 0;
+  background-size: 800px 600px;
+}
+
+.events .link-img {
+  background: url("/public/img/dimensiongate.png") -80px;
+  background-size: 400px 300px;
+}
+
+.link-img {
+  width: 200px;
+  height: 300px;
+  margin: 13px 23px 23px 23px;
+  border: 2px solid #fff;
+}
+.link-img a {
+  display: block;
+  width: 200px;
+  height: 300px;
+  background: #000;
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+.link-img a:hover {
+  opacity: 0;
+}
+
+.option-title {
+  margin: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px 1px #ccc;
+}
+
+.summary {
+  margin: 25px;
+  font-size: 18px;
+  font-family: 微软雅黑;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+.more {
+  margin: 35px 0 0 150px;
+  width: 60px;
+  height: 20px;
+  background: url("/public/img/chatting/51.png") no-repeat;
+  background-size: 60px 22px;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  padding-top: 2px;
+}
+.more a {
+  text-decoration: none;
+}
+.more a:link, .more a:visited {
+  color: #fff;
+}
+
+.middle-part {
+  height: 290px;
+}
+
+.img-roll-container {
+  width: 450px;
+  height: 270px;
+  margin-left: 40px;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  border: 5px solid #777;
+  border-radius: 5px;
+  box-shadow: 0 0 20px #fff;
+}
+
+.img-container {
+  width: 2700px;
+  height: 270px;
+  position: relative;
+}
+
+.img-roll-item {
+  width: 450px;
+  height: 270px;
+  float: left;
+}
+
+.select-bar {
+  width: 450px;
+  height: 12px;
+  bottom: 0;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+  font-size: 0;
+}
+
+.select-bar-item {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 6px;
+  background: #ccc;
+}
+.select-bar-item.select-bar-active {
+  background: #999;
+}
+
+.nav-part {
+  height: 270px;
+  margin-left: 80px;
+  float: left;
+  color: #fff;
+}
+.nav-part form {
+  vertical-align: center;
+}
+.nav-part select {
+  height: 25px;
+}
+
+#searchInfo {
+  height: 21px;
+}
+
+/*# sourceMappingURL=index.css.map */

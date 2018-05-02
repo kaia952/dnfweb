@@ -1,0 +1,35 @@
+@charset "UTF-8";
+.content {
+  margin-bottom: 30px; }
+
+.geography-title {
+  width: 90%;
+  padding: 30px 0;
+  margin-left: 50px;
+  color: #eee;
+  border-bottom: 1px solid #ddd; }
+
+.part {
+  margin: 20px 50px;
+  color: #eee; }
+
+.info-list {
+  float: right;
+  background: url("/public/img/bg1.png") no-repeat;
+  background-size: 100% 100%;
+  list-style-type: none; }
+  .info-list li {
+    margin: 15px; }
+
+h2 {
+  margin-bottom: 20px; }
+
+.dialog-item {
+  font-family: 楷体;
+  background: rgba(100, 100, 100, 0.6);
+  margin-top: 20px;
+  padding: 5px 0; }
+  .dialog-item:hover {
+    background: rgba(100, 100, 100, 0.8); }
+
+/*# sourceMappingURL=geography.css.map */
