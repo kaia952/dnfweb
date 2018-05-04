@@ -8,6 +8,15 @@
   margin-left: 50px;
   color: #eee;
   border-bottom: 1px solid #ddd; }
+  .geography-title h1 {
+    float: left; }
+  .geography-title .returnToList {
+    color: #eee;
+    float: right;
+    margin-top: 20px;
+    text-decoration: none; }
+    .geography-title .returnToList:visited, .geography-title .returnToList:link {
+      color: #fff; }
 
 .part {
   margin: 20px 50px;

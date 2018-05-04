@@ -65,6 +65,14 @@ html
                             td #{character.faction}
                             td #{character.position}
                             td #{character.summary}
+            div.pageControl
+                button(type="button", id="prevPage") 上一页
+                input(type="number", value=page, id="pageInput")
+                span.white-span 共
+                span#totalPages.white-span #{totalPages}
+                span.white-span 页
+                button(type="button", id="nextPage") 下一页
+                button(type="button", id="jumpPage") 跳转
             div(id="inside")
         script(src="/public/js/characterlist.js")
 

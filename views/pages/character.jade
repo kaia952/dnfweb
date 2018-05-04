@@ -6,14 +6,13 @@ html
         script(src="/public/js/jquery-3.3.1.min.js")
         link(href="/public/css/reset.css" rel="stylesheet")
         link(href="/public/css/common.css" rel="stylesheet")
-        //link(href="/public/css/characterlist.css" rel="stylesheet")
         link(href="/public/css/character.css" rel="stylesheet")
     body
         div.main-container
             each character in result
                 div.character-title.clearfix
                     h1 #{character.name}
-                    a(href="http://127.0.0.1:8081/characterlist") 返回人物列表
+                    a.returnToList(href="http://127.0.0.1:8081/characterlist") 返回人物列表
                 div.content.clearfix
                     div.part.clearfix
                         img(src="#{character.imgsrc}")
@@ -42,5 +41,5 @@ html
                             h2 城镇对话
                             each dialogitem in character.dialog
                                 p.dialog-item #{dialogitem}
-        script(src="/public/js/character.js")
+        script(src="/public/js/backToPrev.js")
 

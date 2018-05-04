@@ -1,0 +1,30 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 地下城编辑
+        //link(href="/public/fruitList.css", rel="stylesheet")
+        script(src="/public/js/jquery-3.3.1.min.js")
+    body
+        h1 地理编辑页
+        each dungeon in result
+            form(method="post", action="http://127.0.0.1:8081/admin/modifyExistDungeon")
+                input(type="text", name="dungeonID", value=dungeon.id, style="display:none")
+                span 地下城名字：
+                input(type="text", name="dungeonName", value=dungeon.name)
+                <br />
+                span 位置：
+                input(type="text", name="dungeonPosition", value=dungeon.position)
+                <br />
+                span 图像：
+                input(type="text", name="dungeonImg", value=dungeon.imgsrc)
+                <br />
+                span 首领：
+                input(type="text", name="dungeonBoss", value=dungeon.boss)
+                <br />
+                span 详情：
+                textarea( name="dungeonIntro", rows="20", cols="50")=dungeon.intro
+                <br />
+                input(type="submit")
+
+

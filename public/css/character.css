@@ -13,13 +13,13 @@
 .character-title h1 {
   float: left;
 }
-.character-title a {
+.character-title .returnToList {
   color: #eee;
   float: right;
   margin-top: 20px;
   text-decoration: none;
 }
-.character-title a:visited, .character-title a:link {
+.character-title .returnToList:visited, .character-title .returnToList:link {
   color: #fff;
 }
 

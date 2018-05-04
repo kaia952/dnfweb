@@ -1,7 +1,6 @@
 $(document).ready(function () {
-    var sort = document.getElementsByClassName("sort")[0];
-    var sortCharacterForm = document.getElementById("sortCharacterForm");
-    var gender = document.getElementsByName("gender");
+    var totalPages = $("#totalPages").text();
+    totalPages = parseInt(totalPages);
     var sortArrGender;
     var sortArrSpecies;
     var sortArrFaction;
@@ -92,11 +91,45 @@ $(document).ready(function () {
             $(".character-table:eq(0)").append(tr);
         }
     }
+    
+    $("#nextPage").click(function () {
+        turnPage(1);
+    });
 
-    //按backspace键返回上一页
-    $(document).keydown(function (event) {
-        if(event.keyCode===8){
-            window.history.back();
+    $("#prevPage").click(function () {
+        turnPage(-1);
+    });
+    $("#jumpPage").click(function () {
+        var selectPage = document.getElementById("pageInput").value;
+        jumpPage(selectPage);
+    });
+    
+    function turnPage(direction) {
+        var hrefNow = location.href;
+        var arr=[];
+        arr = hrefNow.split("/");
+        var pageNext = parseInt(arr[arr.length-1]) +direction;
+        if(pageNext<=0){
+            alert("已经是第一页！");
+            return;
         }
-    })
+        else if(pageNext>totalPages){
+            alert("已经到达最后一页！");
+            return;
+        }
+        arr[arr.length-1]=pageNext;
+        location.href = arr.join("/");
+    }
+
+    function jumpPage(pageNum) {
+        if(pageNum<=0||pageNum>totalPages){
+            alert("请输入正确范围之内的页码！");
+            return;
+        }
+        var hrefNow = location.href;
+        var arr=[];
+        arr = hrefNow.split("/");
+        arr[arr.length-1] = pageNum;
+        location.href = arr.join("/");
+    }
 });

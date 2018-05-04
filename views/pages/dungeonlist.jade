@@ -1,0 +1,33 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 地下城列表
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/dungeonlist.css" rel="stylesheet")
+    body
+        div.main-container
+            h1 地下城列表页
+                a(href="http://127.0.0.1:8081") 返回首页
+            table
+                thead
+                    tr
+                        th(class="dungeonList-name") 名字
+                        th(class="dungeonList-type") 图片
+                        th(class="dungeonList-type") 位置
+                        th(class="dungeonList-type") 首领
+                tbody
+                    each dungeon in result
+                        tr(class="dungeon-id-"+dungeon.id)
+                            td
+                                a(href="http://127.0.0.1:8081/dungeon/#{dungeon.name}") #{dungeon.name}
+                            td
+                                img(src=dungeon.imgsrc)
+                            td #{dungeon.position}
+                            td #{dungeon.boss}
+            span(id="inside")
+        script(src="/public/js/backToPrev.js")
+
+

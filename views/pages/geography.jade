@@ -11,13 +11,14 @@ html
     body
         div.main-container
             each geography in result
-                div.geography-title
+                div.geography-title.clearfix
                     h1 #{geography.name}
+                    a.returnToList(href="http://127.0.0.1:8081/geographylist") 返回地理列表
                 div.content.clearfix
                     div.part.clearfix
                         img(src="#{geography.imgsrc}")
                     div.part.part-intro
                         h2 介绍
                         p.intro #{geography.intro}
-        script(src="/public/js/geography.js")
+        script(src="/public/js/backToPrev.js")
 
