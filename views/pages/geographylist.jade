@@ -8,6 +8,16 @@ html
         link(href="/public/css/common.css" rel="stylesheet")
         link(href="/public/css/geographylist.css" rel="stylesheet")
     body
+        header
+            if user
+                ul.header-list
+                    li 欢迎您,#{user.username}
+                    li
+                        a(href="/logout") 登出
+            else
+                ul.header-list
+                    li.header-login 登录
+                    li.header-register 注册
         div.main-container
             h1 地理列表页
                 a(href="http://127.0.0.1:8081") 返回首页
@@ -31,4 +41,5 @@ html
                             td #{geography.type}
             span(id="inside")
         script(src="/public/js/backToPrev.js")
+        script(src="/public/js/headerControl.js")
 

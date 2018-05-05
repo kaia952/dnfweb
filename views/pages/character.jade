@@ -8,6 +8,16 @@ html
         link(href="/public/css/common.css" rel="stylesheet")
         link(href="/public/css/character.css" rel="stylesheet")
     body
+        header
+            if user
+                ul.header-list
+                    li 欢迎您,#{user.username}
+                    li
+                        a(href="/logout") 登出
+            else
+                ul.header-list
+                    li.header-login 登录
+                    li.header-register 注册
         div.main-container
             each character in result
                 div.character-title.clearfix
@@ -41,5 +51,31 @@ html
                             h2 城镇对话
                             each dialogitem in character.dialog
                                 p.dialog-item #{dialogitem}
+        div.register-window
+            div.reg-log-title 注册
+            form(action="http://127.0.0.1:8081/register", method="post")
+                div.reg-log-body
+                    span 用户名：
+                    input(type="text", name="registerUsername")
+                    <br />
+                    span 密码：
+                    input(type="password", name="registerPassword")
+                    <br />
+                    span 确认密码：
+                    input(type="password", name="confirmPassword")
+                    <br />
+                    input(type="submit", value="注册")
+        div.login-window
+            div.reg-log-title 登录
+            form(action="http://127.0.0.1:8081/login", method="post")
+                div.reg-log-body
+                    span 用户名：
+                    input(type="text", name="loginUsername")
+                    <br />
+                    span 密码：
+                    input(type="password", name="loginPassword")
+                    <br />
+                    input(type="submit", value="登录")
+        div.cover
         script(src="/public/js/backToPrev.js")
-
+        script(src="/public/js/headerControl.js")

@@ -50,4 +50,10 @@ module.exports = function (app) {
 //----------------首页搜索及列表页分类----------------------
     app.get("/search",user.search);
     app.get("/sortCharacter",user.sortCharacter);
+
+//---------------注册及登录----------------------
+    app.post("/register",urlencodedParser,user.register);
+    app.post("/login",urlencodedParser,user.login);
+    app.get("/logout",user.logout);
 };
+

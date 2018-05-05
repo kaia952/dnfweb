@@ -1,19 +1,24 @@
 var sql;
 var connection = require('./mysqlConfig');
 connection.connect();
-
+var bcrypt = require('bcrypt');
+const saltRound = 10;
 //--------------------------------------------------四个列表页面------------------------------------------
 exports.Index= function (req,res) {
-    res.sendFile(__dirname+"/index.html");
+    res.render("index",{
+        user:req.session.user
+    });
 };
 
 exports.characterList=function (req,res) {
+    if(!req.params.page){
+        res.redirect("/characterlist/1");
+        return;
+    }
     var page=req.params.page;
     var totalPages;
     var characterPerPage=6;
-    if(!page){
-        res.redirect("/characterlist/1");
-    }
+
     sql = "SELECT name FROM dnfcharacter";
     connection.query(sql,function (err,result) {
         if(err){
@@ -32,6 +37,7 @@ exports.characterList=function (req,res) {
         res.render("characterlist",{
             page:page,
             totalPages:totalPages,
+            user:req.session.user,
             result:result
         })
     });
@@ -46,6 +52,7 @@ exports.geographyList = function (req,res) {
         }
         console.log("-------加载地理列表-------");
         res.render("geographylist",{
+            user:req.session.user,
             result:result
         })
     })
@@ -60,6 +67,7 @@ exports.dungeonList=function (req,res) {
         }
         console.log("-------加载地理列表-------");
         res.render("dungeonlist",{
+            user:req.session.user,
             result:result
         })
     })
@@ -113,6 +121,7 @@ exports.modifyCharacter = function (req,res) {
         }
         console.log("查找到人物，进入修改："+modifyName);
         res.render("characterModify",{
+            user:req.session.user,
             result:result
         })
     });
@@ -170,6 +179,7 @@ exports.character = function (req,res) {
         }
         //-------------------------------------
         res.render("character",{
+            user:req.session.user,
             result:result
         })
     });
@@ -360,13 +370,13 @@ exports.dungeon = function (req,res) {
         })
     })
 };
-
+//-------------------------------------分类-----------------------------
 exports.sortCharacter = function (req,res) {
     var range="";
     var arr2=[];
     //存在searchall则判断为没有选中任何分类标签，全部显示
     if(req.query.searchall){
-        sql="SELECT name,species,gender,imgsrc,faction,position,summary FROM dnfcharacter";
+        sql="SELECT name,species,gender,imgsrc,faction,position,summary FROM dnfcharacter LIMIT 6";
         connection.query(sql,function (err,result) {
             if(err){
                 console.log("ERROR:"+err.message);
@@ -418,3 +428,100 @@ exports.sortCharacter = function (req,res) {
         });
     }
 };
+
+//--------------登陆及注册----------------
+exports.register = function (req,res) {
+    var Uname = req.body.registerUsername;
+    var Upassword = req.body.registerPassword;
+    var UconfirmPassword = req.body.confirmPassword;
+    var existed=false;
+    sql="SELECT username FROM users WHERE username=?";
+    connection.query(sql,Uname,function (err,result) {
+        if(err){
+            console.log(err.message);
+        }
+        // console.log(result);
+        if(result!=""){
+            console.log("下面设置existed为true");
+            existed = true;
+        }
+    });
+
+    if(Upassword !== UconfirmPassword){
+        res.send("密码不一致，请返回重新输入！");
+        return;
+    }
+    bcrypt.genSalt(saltRound,function (err,salt) {
+        if(err){
+            console.log("genSalt Error:"+err.message);
+            return;
+        }
+        console.log(Upassword);
+        bcrypt.hash(Upassword,salt,function (err,hash) {
+            if(err){
+                console.log("hash Error:"+err.message);
+                return;
+            }
+            console.log(hash);
+            Upassword = hash;
+
+            console.log(Upassword);
+            sql="INSERT INTO users(username,password) VALUES(?,?)";
+            var addPara = [Uname,Upassword];
+            connection.query(sql,addPara,function (err,result) {
+                if (err){
+                    console.log("ERROR:"+err.message);
+                    return;
+                }
+                console.log("------REGISTER SUCCESS----");
+            });
+
+        })
+    });
+    res.redirect("/");
+};
+
+exports.login = function (req,res) {
+    var Uname = req.body.loginUsername;
+    var Upassword = req.body.loginPassword;
+    sql = "SELECT * FROM users WHERE username=?";
+    connection.query(sql,Uname,function (err,result) {
+        if(err){
+            console.log("genSalt Error:"+err.message);
+            return;
+        }
+        if(result.length==0){
+            console.log("error");
+            res.redirect("/");
+        }
+        else{
+            bcrypt.compare(Upassword,result[0].password,function (err,isMatch) {
+                console.log("比较完成");
+                console.log(isMatch);
+                if(err){
+                    console.log(err.message);
+                    return;
+                }
+                if(isMatch){
+                    console.log("登录成功");
+                    req.session.user = {
+                        username:Uname,
+                        password:result[0].password
+                    };
+                    res.redirect("/");
+                }
+                else{
+                    console.log("用户不存在或者密码不正确");
+                    res.redirect("/");
+                }
+            })
+        }
+    })
+    
+};
+
+exports.logout =function (req,res) {
+    delete req.session.user;
+    res.redirect('/');
+};
+

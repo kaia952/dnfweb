@@ -11,8 +11,86 @@ a{
   min-height: 800px;
   background:rgba(50,50,50,0.8);
   box-shadow: 0 0 20px #fff;
-  padding-bottom: 50px;
+  padding:50px 0;
 }
 p{
   white-space: pre-line;
+}
+header{
+  width:100%;
+  height:50px;
+  background:#555555;
+  position: fixed;
+  z-index: 21;
+}
+.header-list{
+  float:right;
+  list-style-type: none;
+  margin-right: 40px;
+  color:#eee;
+  li{
+    float:left;
+    padding:0 10px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover{
+      background:#aaa;
+    }
+  }
+}
+
+.login-window,.register-window{
+  width:400px;
+  height:300px;
+  background:#bbb;
+  position:fixed;
+  left:50%;
+  top:50%;
+  margin:-150px 0 0 -200px;
+  z-index: 20;
+  border:8px solid #775533;
+  border-radius: 8px;
+  display: none;
+  &:after{
+    content: "x";
+    display: block;
+    width:20px;
+    height:20px;
+    border-radius: 10px;
+    background:#ff3333;
+    color:#fff;
+    text-align: center;
+    position:absolute;
+    right:-10px;
+    top:-10px;
+    cursor:pointer;
+  }
+}
+.reg-log-title{
+  width:400px;
+  height:20px;
+  margin-top:30px;
+  font-size:20px;
+  text-align: center;
+  font-weight: bold;
+}
+.reg-log-body{
+  margin-right:100px;
+  text-align: right;
+  input{
+    margin:10px 0;
+  }
+}
+.cover{
+  width:100%;
+  height:100%;
+  background:#000;
+  position:fixed;
+  left:0;
+  top:0;
+  z-index: 19;
+  opacity:0.6;
+  display: none;
 }

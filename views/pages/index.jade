@@ -1,0 +1,125 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 人物列表
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/index.css" rel="stylesheet")
+    body
+        header
+            if user
+                ul.header-list
+                    li 欢迎您,#{user.username}
+                    li
+                        a(href="/logout") 登出
+            else
+                ul.header-list
+                    li.header-login 登录
+                    li.header-register 注册
+        div.main-container
+            div.title
+                h1 欢迎访问资料站首页！
+            div.middle-part.clearfix
+                div.img-roll-container
+                    div.img-container.clearfix
+                        div.img-roll-item.img-active
+                            a(href="http://dnf.qq.com/cp/a20180426version/page1.html")
+                                img(src="/public/img/img-roll-1.jpg")
+                        div.img-roll-item
+                            a(href="http://dnf.qq.com/cp/a20180426pack/?e_code=407688&idataid=210113")
+                                img(src="/public/img/img-roll-2.jpg")
+                        div.img-roll-item
+                            a(href="http://dnf.qq.com/cp/a20180426lucky/page1.html")
+                                img(src="/public/img/img-roll-3.jpg")
+                        div.img-roll-item
+                            a(href="http://dnf.qq.com/cp/a20180426time/?e_code=407685&idataid=210109")
+                                img(src="/public/img/img-roll-4.jpg")
+                        div.img-roll-item.img-active
+                            a(href="http://dnf.qq.com/cp/a20180426version/page1.html")
+                                img(src="/public/img/img-roll-1.jpg")
+                    div.select-bar
+                        div.select-bar-item.select-bar-active
+                        div.select-bar-item
+                        div.select-bar-item
+                        div.select-bar-item
+                div.nav-part
+                    form(action="http://127.0.0.1:8081/search", method="get")
+                        span 搜索：
+                        input(type="text", name="searchInfo", id="searchInfo")
+                        select(name="searchType1", id="searchType1")
+                            option(value="character") 人物
+                            option(value="geography") 地理
+                            option(value="dungeon") 地下城
+                            option(value="events") 事件
+                        select(name="searchTypeCharacter", id="searchTypeCharacter")
+                            option(value="name") 名字
+                            option(value="species") 种族
+                            option(value="faction") 阵营
+                            option(value="position") 位置
+                        input(type="submit", value="开始搜索")
+            div.options-link.clearfix
+                div.option-wrapper.character
+                    div.option-title
+                    div.link-img
+                        a(href="http://127.0.0.1:8081/characterlist")
+                    div.summary
+                        span 你想了解的有关<br />阿拉德的人物...
+                    div.more
+                        a(href="http://127.0.0.1:8081/characterlist") 查看更多
+                div.option-wrapper.geography
+                    div.option-title
+                    div.link-img
+                        a(href="http://127.0.0.1:8081/geographylist")
+                    div.summary
+                        span 你想了解的有关<br />阿拉德的地理...
+                    div.more
+                        a(href="http://127.0.0.1:8081/geographylist") 查看更多
+                div.option-wrapper.dungeon
+                    div.option-title
+                    div.link-img
+                        a(href="http://127.0.0.1:8081/dungeonlist")
+                    div.summary
+                        span 你想了解的有关<br />阿拉德的地下城...
+                    div.more
+                        a(href="http://127.0.0.1:8081/dungeonlist") 查看更多
+                div.option-wrapper.events
+                    div.option-title
+                    div.link-img
+                        a(href="http://127.0.0.1:8081/eventslist")
+                    div.summary
+                        span 你想了解的有关<br />阿拉德的事件...
+                    div.more
+                        a(href="http://127.0.0.1:8081/eventslist") 查看更多
+
+        div.register-window
+            div.reg-log-title 注册
+            form(action="http://127.0.0.1:8081/register", method="post")
+                div.reg-log-body
+                    span 用户名：
+                    input(type="text", name="registerUsername")
+                    <br />
+                    span 密码：
+                    input(type="password", name="registerPassword")
+                    <br />
+                    span 确认密码：
+                    input(type="password", name="confirmPassword")
+                    <br />
+                    input(type="submit", value="注册")
+        div.login-window
+            div.reg-log-title 登录
+            form(action="http://127.0.0.1:8081/login", method="post")
+                div.reg-log-body
+                    span 用户名：
+                    input(type="text", name="loginUsername")
+                    <br />
+                    span 密码：
+                    input(type="password", name="loginPassword")
+                    <br />
+                    input(type="submit", value="登录")
+        div.cover
+        script(src="/public/js/headerControl.js")
+        script(src="/public/js/index-img-roll.js")
+        script(src="/public/js/index-search-part.js")
+
