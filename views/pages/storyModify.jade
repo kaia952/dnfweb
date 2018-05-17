@@ -1,0 +1,27 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 故事编辑
+        //link(href="/public/fruitList.css", rel="stylesheet")
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+    body
+        div.main-container
+            h1 故事编辑页
+            each story in result
+                form(method="post", action="http://127.0.0.1:8081/admin/modifyExistStory")
+                    input(type="text", name="storyID", value=story.id, style="display:none")
+                    span 地理名字：
+                    input(type="text", name="storyName", value=story.name)
+                    <br />
+                    span 封面：
+                    input(type="text", name="storyCover", value=story.cover)
+                    <br />
+                    span 内容：
+                    textarea( name="storyContent", rows="20", cols="50")=story.content
+                    <br />
+                    input(type="submit")
+
+

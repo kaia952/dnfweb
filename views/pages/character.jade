@@ -6,13 +6,17 @@ html
         script(src="/public/js/jquery-3.3.1.min.js")
         link(href="/public/css/reset.css" rel="stylesheet")
         link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/page-detail-common.css" rel="stylesheet")
         link(href="/public/css/character.css" rel="stylesheet")
     body
         header
-            if user
+            div.header-returnIndex
+                a.header-returnIndex-title(href="/") DNF资料站
+                span.header-returnIndex-author made By HD(w-ww)
+            if (user)
                 ul.header-list
-                    li 欢迎您,#{user.username}
-                    li
+                    li.header-username 欢迎您，#{user.username}
+                    li.header-logout
                         a(href="/logout") 登出
             else
                 ul.header-list
@@ -20,8 +24,11 @@ html
                     li.header-register 注册
         div.main-container
             each character in result
-                div.character-title.clearfix
+                div.page-detail-title.clearfix
                     h1 #{character.name}
+                    if user
+                        if (user.permission>=10)
+                            a.modifyIt(href="http://127.0.0.1:8081/admin/modifyCharacter/#{character.name}") 修改
                     a.returnToList(href="http://127.0.0.1:8081/characterlist") 返回人物列表
                 div.content.clearfix
                     div.part.clearfix

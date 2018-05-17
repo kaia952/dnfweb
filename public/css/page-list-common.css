@@ -1,0 +1,77 @@
+@charset "UTF-8";
+.page-list-title {
+  width: 90%;
+  padding: 30px 0;
+}
+.page-list-title h1 {
+  margin-left: 50px;
+  color: #fff;
+  float: left;
+}
+.page-list-title .returnIndex {
+  line-height: 42px;
+  font-size: 16px;
+  float: right;
+  color: #bbb;
+}
+.page-list-title .addNew {
+  float: left;
+  margin: 20px 0 0 10px;
+  color: #bbb;
+}
+
+p {
+  margin-top: 10px;
+}
+
+table.list-table {
+  width: 1100px;
+  background: #555;
+  border: 3px solid #fff;
+  color: #fff;
+  margin: 0 auto;
+}
+table.list-table th, table.list-table td {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 60px;
+  padding: 5px;
+  border: 1px solid #fff;
+  text-align: center;
+  font-family: 微软雅黑;
+  text-shadow: 1px 1px 2px #000;
+}
+table.list-table th a, table.list-table td a {
+  text-shadow: 0 0 0 #000;
+  color: #f19c0c;
+}
+table.list-table tr:nth-child(odd) {
+  background: #777;
+}
+table.list-table img {
+  width: 130px;
+}
+
+.pageControl {
+  width: 300px;
+  margin: 10px auto;
+}
+.pageControl button, .pageControl input {
+  margin: 0 5px;
+}
+
+#pageInput {
+  width: 35px;
+  height: 25px;
+}
+
+.white-span {
+  color: #fff;
+}
+
+#totalPages {
+  color: #fff;
+}
+
+/*# sourceMappingURL=page-list-common.css.map */

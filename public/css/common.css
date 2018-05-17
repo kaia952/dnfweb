@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   background: #000;
   background: url("/public/img/Dnfbg.jpg") no-repeat fixed;
@@ -26,6 +27,9 @@ header {
   background: #555555;
   position: fixed;
   z-index: 21;
+  -webkit-box-shadow: 0 2px 2px #111;
+  -moz-box-shadow: 0 2px 2px #111;
+  box-shadow: 0 2px 2px #111;
 }
 
 .header-list {
@@ -33,6 +37,7 @@ header {
   list-style-type: none;
   margin-right: 40px;
   color: #eee;
+  font-family: 黑体;
 }
 .header-list li {
   float: left;
@@ -42,8 +47,43 @@ header {
   cursor: pointer;
   transition: all 0.2s;
 }
+.header-list li.header-username {
+  cursor: default;
+}
+.header-list li.header-username:hover {
+  background: #555;
+}
+.header-list li.header-logout {
+  background: #5555ff;
+}
 .header-list li:hover {
   background: #aaa;
+}
+.header-list li a, .header-list li a:link, .header-list li a:visited {
+  display: block;
+  color: #eee;
+  line-height: 50px;
+}
+
+.header-returnIndex {
+  height: 50px;
+  line-height: 50px;
+  margin-left: 40px;
+  float: left;
+}
+
+.header-returnIndex-title {
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: #eee;
+}
+
+.header-returnIndex-author {
+  margin-left: 10px;
+  font-style: italic;
+  font-family: Cambria;
+  color: #ccc;
 }
 
 .login-window, .register-window {
@@ -59,8 +99,8 @@ header {
   border-radius: 8px;
   display: none;
 }
-.login-window:after, .register-window:after {
-  content: "x";
+
+.close-btn {
   display: block;
   width: 20px;
   height: 20px;
@@ -101,6 +141,23 @@ header {
   z-index: 19;
   opacity: 0.6;
   display: none;
+}
+
+.reg-alert-bar {
+  text-align: center;
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.ps {
+  float: right;
+  color: #eee;
+  font-size: 12px;
+  margin: 0 10px 10px 0;
+}
+
+form span {
+  color: #eee;
 }
 
 /*# sourceMappingURL=common.css.map */

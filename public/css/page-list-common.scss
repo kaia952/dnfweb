@@ -1,0 +1,77 @@
+@mixin box-sizing($sizing){
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+//--------------列表页通用大标题和文字--------------
+.page-list-title{
+  width:90%;
+  padding:30px 0;
+  h1{
+    margin-left: 50px;
+    color:#fff;
+    float: left;
+  }
+  .returnIndex{
+    line-height: 42px;
+    font-size: 16px;
+    float:right;
+    color:#bbb;
+  }
+  .addNew{
+    float: left;
+    margin:20px 0 0 10px;
+    color:#bbb
+  }
+}
+
+p{
+  margin-top:10px;
+}
+
+//--------------列表页通用表格--------------
+table.list-table{
+  width:1100px;
+  background:#555;
+  border:3px solid #fff;
+  color:#fff;
+  margin:0 auto;
+  th,td{
+    @include box-sizing(border-box);
+    min-width: 60px;
+    padding:5px;
+    border:1px solid #fff;
+    text-align: center;
+    font-family: 微软雅黑;
+    text-shadow: 1px 1px 2px #000;
+    a{
+      text-shadow: 0 0 0 #000;
+      color:#f19c0c;
+    }
+  }
+  tr:nth-child(odd){
+    background:#777;
+  }
+  img{
+    width:130px;
+  }
+}
+
+//--------------列表页分页部分样式-----------------
+.pageControl{
+  width:300px;
+  margin:10px auto;
+  button,input{
+    margin:0 5px;
+  }
+}
+#pageInput{
+  width:35px;
+  height:25px;
+}
+.white-span{
+  color:#fff;
+}
+#totalPages{
+  color:#fff;
+}

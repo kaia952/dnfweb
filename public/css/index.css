@@ -4,8 +4,8 @@
   padding: 30px 0;
 }
 .title h1 {
+  color: #eee;
   text-align: center;
-  background: brown;
 }
 
 .options-link {
@@ -37,7 +37,7 @@
   background-size: 800px 600px;
 }
 
-.events .link-img {
+.stories .link-img {
   background: url("/public/img/dimensiongate.png") -80px;
   background-size: 400px 300px;
 }

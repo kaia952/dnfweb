@@ -5,43 +5,48 @@ html
         title 人物编辑
         //link(href="/public/fruitList.css", rel="stylesheet")
         script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
     body
-        h1 人物列表页
-        each character in result
-            form(method="post", action="http://127.0.0.1:8081/admin/modifyExistCharacter")
-                input(type="text", name="characterID", value=character.id, style="display:none")
-                span 角色名字：
-                input(type="text", name="characterName", value=character.name)
-                <br />
-                span 种族：
-                input(type="text", name="characterSpecies", value=character.species)
-                <br />
-                span 性别：
-                input(type="text", name="characterGender", value=character.gender)
-                <br />
-                span 图像：
-                input(type="text", name="characterImg", value=character.imgsrc)
-                <br />
-                span 好感度（中）：
-                input(type="text", name="characterImgFavorM", value=character.imgFavorM)
-                <br />
-                span 好感度（高）：
-                input(type="text", name="characterImgFavorH", value=character.imgFavorH)
-                <br />
-                span 阵营：
-                input(type="text", name="characterFaction", value=character.faction)
-                <br />
-                span 位置：
-                input(type="text", name="characterPosition", value=character.position)
-                <br />
-                span 简介：
-                input(type="text", name="characterSummary", value=character.summary)
-                <br />
-                span 详情：
-                textarea( name="characterIntro", rows="20", cols="50")=character.intro
-                span 对话：
-                textarea( name="characterDialog", rows="20", cols="50")=character.dialog
-                <br />
-                input(type="submit")
+        div.main-container(style="color:#fff")
+            h1 人物编辑页
+            each character in result
+                form(method="post", action="http://127.0.0.1:8081/admin/modifyExistCharacter")
+                    input(type="text", name="characterID", value=character.id, style="display:none")
+                    span 角色名字：
+                    input(type="text", name="characterName", value=character.name)
+                    <br />
+                    span 种族：
+                    input(type="text", name="characterSpecies", value=character.species)
+                    <br />
+                    span 性别：
+                    input(type="text", name="characterGender", value=character.gender)
+                    <br />
+                    span 图像：
+                    input(type="text", name="characterImg", value=character.imgsrc)
+                    <br />
+                    span 好感度（中）：
+                    input(type="text", name="characterImgFavorM", value=character.imgFavorM)
+                    <br />
+                    span 好感度（高）：
+                    input(type="text", name="characterImgFavorH", value=character.imgFavorH)
+                    <br />
+                    span 阵营：
+                    input(type="text", name="characterFaction", value=character.faction)
+                    <br />
+                    span 位置：
+                    input(type="text", name="characterPosition", value=character.position)
+                    <br />
+                    span 简介：
+                    input(type="text", name="characterSummary", value=character.summary)
+                    <br />
+                    span 详情：
+                    textarea( name="characterIntro", rows="20", cols="50")=character.intro
+                    <br />
+                    span 对话：
+                    textarea( name="characterDialog", rows="20", cols="50")=character.dialog
+                    <br />
+                    <br />
+                    input(type="submit")
 
 

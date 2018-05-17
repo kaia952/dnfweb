@@ -6,12 +6,29 @@ html
         script(src="/public/js/jquery-3.3.1.min.js")
         link(href="/public/css/reset.css" rel="stylesheet")
         link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/page-detail-common.css" rel="stylesheet")
         link(href="/public/css/dungeon.css" rel="stylesheet")
     body
+        header
+            div.header-returnIndex
+                a.header-returnIndex-title(href="/") DNF资料站
+                span.header-returnIndex-author made By HD(w-ww)
+            if user
+                ul.header-list
+                    li.header-username 欢迎您，#{user.username}
+                    li.header-logout
+                        a(href="/logout") 登出
+            else
+                ul.header-list
+                    li.header-login 登录
+                    li.header-register 注册
         div.main-container
             each dungeon in result
-                div.dungeon-title.clearfix
+                div.page-detail-title.clearfix
                     h1 #{dungeon.name}
+                    if user
+                        if (user.permission >= 10)
+                            a.modifyIt(href="http://127.0.0.1:8081/admin/modifyDungeon/#{dungeon.name}") 修改
                     a.returnToList(href="http://127.0.0.1:8081/dungeonlist") 返回地下城列表
                 div.content.clearfix
                     div.part.clearfix
@@ -27,4 +44,4 @@ html
                         h2 介绍
                         p.intro #{dungeon.intro}
         script(src="/public/js/backToPrev.js")
-
+        script(src="/public/js/headerControl.js")

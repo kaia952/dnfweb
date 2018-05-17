@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>角色上传</title>
     <link href="/public/css/reset.css" rel="stylesheet">
+    <link href="/public/css/common.css" rel="stylesheet">
     <style type="text/css">
         span{
             margin-left: 20px;
@@ -16,19 +17,21 @@
     </style>
 </head>
 <body>
-<form action="http://127.0.0.1:8081/admin/uploadNewCharacter" method="post">
-    <span>人物名字</span><input type="text" name="characterName" id="characterName"><br />
-    <span>种族</span><input type="text" name="characterSpecies" id="characterSpecies"><br />
-    <span>性别</span><input type="text" name="characterGender" id="characterGender"><br />
-    <span>图片</span><input type="text" name="characterImg" id="characterImg"><br />
-    <span>好感度（中）</span><input type="text" name="characterImgFavorM" id="characterImgFavorM"><br />
-    <span>好感度（高）</span><input type="text" name="characterImgFavorH" id="characterImgFavorH"><br />
-    <span>所属阵营</span><input type="text" name="characterFaction" id="characterFaction"><br />
-    <span>所在城镇</span><input type="text" name="characterPosition" id="characterPosition"><br />
-    <span>简介</span><input type="text" name="characterSummary" id="characterSummary"><br />
-    <span>详细信息</span><textarea name="characterIntro" id="characterIntro" rows="20" cols="50"></textarea><br />
-    <span>对话</span><textarea name="characterDialog" id="characterDialog" rows="20" cols="50"></textarea><br />
-    <input type="submit" value="提交">
-</form>
+<div class="main-container">
+    <form action="http://127.0.0.1:8081/admin/uploadNewCharacter" method="post">
+        <span>人物名字</span><input type="text" name="characterName" id="characterName"><br />
+        <span>种族</span><input type="text" name="characterSpecies" id="characterSpecies"><br />
+        <span>性别</span><input type="text" name="characterGender" id="characterGender"><br />
+        <span>图片</span><input type="text" name="characterImg" id="characterImg"><br />
+        <span>好感度（中）</span><input type="text" name="characterImgFavorM" id="characterImgFavorM"><br />
+        <span>好感度（高）</span><input type="text" name="characterImgFavorH" id="characterImgFavorH"><br />
+        <span>所属阵营</span><input type="text" name="characterFaction" id="characterFaction"><br />
+        <span>所在城镇</span><input type="text" name="characterPosition" id="characterPosition"><br />
+        <span>简介</span><input type="text" name="characterSummary" id="characterSummary"><br />
+        <span>详细信息</span><textarea name="characterIntro" id="characterIntro" rows="20" cols="50"></textarea><br />
+        <span>对话</span><textarea name="characterDialog" id="characterDialog" rows="20" cols="50"></textarea><br />
+        <input type="submit" value="提交">
+    </form>
+</div>
 </body>
 </html>

@@ -9,10 +9,13 @@ html
         link(href="/public/css/index.css" rel="stylesheet")
     body
         header
+            div.header-returnIndex
+                a.header-returnIndex-title(href="/") DNF资料站
+                span.header-returnIndex-author made By HD(w-ww)
             if user
                 ul.header-list
-                    li 欢迎您,#{user.username}
-                    li
+                    li.header-username 欢迎您，#{user.username}
+                    li.header-logout
                         a(href="/logout") 登出
             else
                 ul.header-list
@@ -84,42 +87,45 @@ html
                         span 你想了解的有关<br />阿拉德的地下城...
                     div.more
                         a(href="http://127.0.0.1:8081/dungeonlist") 查看更多
-                div.option-wrapper.events
+                div.option-wrapper.stories
                     div.option-title
                     div.link-img
-                        a(href="http://127.0.0.1:8081/eventslist")
+                        a(href="http://127.0.0.1:8081/storieslist")
                     div.summary
-                        span 你想了解的有关<br />阿拉德的事件...
+                        span 你想了解的有关<br />阿拉德的故事...
                     div.more
-                        a(href="http://127.0.0.1:8081/eventslist") 查看更多
+                        a(href="http://127.0.0.1:8081/storieslist") 查看更多
 
         div.register-window
             div.reg-log-title 注册
             form(action="http://127.0.0.1:8081/register", method="post")
                 div.reg-log-body
                     span 用户名：
-                    input(type="text", name="registerUsername")
+                    input(type="text", name="registerUsername", required)
                     <br />
                     span 密码：
-                    input(type="password", name="registerPassword")
+                    input(type="password", name="registerPassword", required)
                     <br />
                     span 确认密码：
-                    input(type="password", name="confirmPassword")
+                    input(type="password", name="confirmPassword", required)
                     <br />
-                    input(type="submit", value="注册")
+                    input(type="submit", value="注册", id="register-submit")
+            div.reg-alert-bar
+            div.close-btn.reg-close-btn x
         div.login-window
             div.reg-log-title 登录
             form(action="http://127.0.0.1:8081/login", method="post")
                 div.reg-log-body
                     span 用户名：
-                    input(type="text", name="loginUsername")
+                    input(type="text", name="loginUsername", required)
                     <br />
                     span 密码：
-                    input(type="password", name="loginPassword")
+                    input(type="password", name="loginPassword", required)
                     <br />
-                    input(type="submit", value="登录")
+                    input(type="submit", value="登录", id="login-submit")
+            div.close-btn.login-close-btn x
         div.cover
         script(src="/public/js/headerControl.js")
         script(src="/public/js/index-img-roll.js")
         script(src="/public/js/index-search-part.js")
-
+        script(src="/public/js/register-checkDuplication.js")

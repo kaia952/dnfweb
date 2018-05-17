@@ -1,0 +1,47 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 故事列表
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/dungeonlist.css" rel="stylesheet")
+        link(href="/public/css/page-list-common.css" rel="stylesheet")
+    body
+        header
+            div.header-returnIndex
+                a.header-returnIndex-title(href="/") DNF资料站
+                span.header-returnIndex-author made By HD(w-ww)
+            if user
+                ul.header-list
+                    li.header-username 欢迎您，#{user.username}
+                    li.header-logout
+                        a(href="/logout") 登出
+            else
+                ul.header-list
+                    li.header-login 登录
+                    li.header-register 注册
+        div.main-container
+            div.page-list-title.clearfix
+                h1 故事列表页
+                if (user)
+                    if (user.permission>=10)
+                        a.addNew(href="/admin/uploadStory") 添加新故事
+                a.returnIndex(href="/") 返回首页
+            table.list-table
+                thead
+                    tr
+                        th(class="storyList-name") 标题
+                        th(class="storyList-cover") 封面
+                tbody
+                    each story in result
+                        tr(class="dungeon-id-"+story.id)
+                            td
+                                a(href="http://127.0.0.1:8081/story/#{story.name}") #{story.name}
+                            td
+                                img(src=story.cover)
+            span(id="inside")
+        script(src="/public/js/backToPrev.js")
+        script(src="/public/js/headerControl.js")
+

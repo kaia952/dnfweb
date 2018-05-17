@@ -1,3 +1,11 @@
+$headerLineHeight:50px;
+
+@mixin box-shadow($shadow){
+  -webkit-box-shadow: $shadow ;
+  -moz-box-shadow: $shadow ;
+  box-shadow: $shadow ;
+}
+
 html{
   background: #000;
   background:url("/public/img/Dnfbg.jpg") no-repeat fixed;
@@ -16,31 +24,68 @@ a{
 p{
   white-space: pre-line;
 }
+
+
+//-----------------以下是header部分-----------------
 header{
   width:100%;
-  height:50px;
+  height:$headerLineHeight;
   background:#555555;
   position: fixed;
   z-index: 21;
+  @include box-shadow(0 2px 2px #111);
 }
 .header-list{
   float:right;
   list-style-type: none;
   margin-right: 40px;
   color:#eee;
+  font-family: 黑体;
   li{
     float:left;
     padding:0 10px;
-    line-height: 50px;
+    line-height: $headerLineHeight;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
+    &.header-username{
+      cursor:default;
+      &:hover{
+        background:#555;
+      }
+    }
+    &.header-logout{
+      background:#5555ff;
+    }
     &:hover{
       background:#aaa;
     }
+    a,a:link,a:visited{
+      display: block;
+      color:#eee;
+      line-height: $headerLineHeight;
+    }
   }
 }
-
+.header-returnIndex{
+  height:$headerLineHeight;
+  line-height: $headerLineHeight;
+  margin-left: 40px;
+  float:left;
+}
+.header-returnIndex-title{
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  color:#eee;
+}
+.header-returnIndex-author{
+  margin-left: 10px;
+  font-style: italic;
+  font-family: Cambria;
+  color:#ccc;
+}
+//-----------------------以下是注册登录弹窗-------------------
 .login-window,.register-window{
   width:400px;
   height:300px;
@@ -53,21 +98,21 @@ header{
   border:8px solid #775533;
   border-radius: 8px;
   display: none;
-  &:after{
-    content: "x";
-    display: block;
-    width:20px;
-    height:20px;
-    border-radius: 10px;
-    background:#ff3333;
-    color:#fff;
-    text-align: center;
-    position:absolute;
-    right:-10px;
-    top:-10px;
-    cursor:pointer;
-  }
 }
+.close-btn{
+  display: block;
+  width:20px;
+  height:20px;
+  border-radius: 10px;
+  background:#ff3333;
+  color:#fff;
+  text-align: center;
+  position:absolute;
+  right:-10px;
+  top:-10px;
+  cursor:pointer;
+}
+
 .reg-log-title{
   width:400px;
   height:20px;
@@ -93,4 +138,23 @@ header{
   z-index: 19;
   opacity:0.6;
   display: none;
+}
+.reg-alert-bar{
+  text-align:center;
+  color:#ff0000;
+  font-weight: bold;
+}
+
+//-----------------其他--------------
+.ps{
+  float:right;
+  color:#eee;
+  font-size: 12px;
+  margin:0 10px 10px 0;
+}
+
+form{
+  span{
+    color:#eee;
+  }
 }

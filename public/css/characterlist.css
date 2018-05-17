@@ -1,47 +1,4 @@
 @charset "UTF-8";
-h1 {
-  margin: 0 50px 30px 50px;
-  color: #fff;
-}
-h1 a {
-  line-height: 42px;
-  font-size: 16px;
-  float: right;
-  color: #bbb;
-}
-h1 a:link, h1 a:visited {
-  color: #bbb;
-}
-
-table {
-  width: 1100px;
-  background: #555;
-  border: 1px solid #fff;
-  color: #fff;
-  margin: 0 auto;
-}
-
-th, td {
-  box-sizing: border-box;
-  min-width: 60px;
-  padding: 5px;
-  border: 1px solid #fff;
-  text-align: center;
-  font-family: 微软雅黑;
-}
-
-tr:nth-child(odd) {
-  background: #777;
-}
-
-img {
-  width: 130px;
-}
-
-p {
-  margin-top: 10px;
-}
-
 .sort-description {
   color: #ffffff;
   float: left;
@@ -89,27 +46,6 @@ p {
   margin-left: 10px;
   border-radius: 2px;
   color: #eee;
-}
-
-.pageControl {
-  width: 300px;
-  margin: 10px auto;
-}
-.pageControl button, .pageControl input {
-  margin: 0 5px;
-}
-
-#pageInput {
-  width: 35px;
-  height: 25px;
-}
-
-.white-span {
-  color: #fff;
-}
-
-#totalPages {
-  color: #fff;
 }
 
 /*# sourceMappingURL=characterlist.css.map */

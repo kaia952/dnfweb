@@ -59,22 +59,51 @@ exports.geographyList = function (req,res) {
 };
 
 exports.dungeonList=function (req,res) {
-    sql = "SELECT * FROM dnfdungeon";
+    if(!req.params.page){
+        return res.redirect("./dungeonlist/1");
+    }
+    var page=req.params.page;
+    var totalPages;
+    var dungeonPerPage = 8;
+
+    sql = "SELECT name FROM dnfdungeon";
     connection.query(sql,function (err,result) {
         if(err){
             console.log("ERROR:"+err.message);
             return;
         }
-        console.log("-------加载地理列表-------");
+        totalPages = Math.ceil(result.length/dungeonPerPage);
+    });
+
+    sql = "SELECT * FROM dnfdungeon LIMIT "+dungeonPerPage+" OFFSET "+ (page-1)*dungeonPerPage;
+    connection.query(sql,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("-------加载地下城列表-------");
         res.render("dungeonlist",{
             user:req.session.user,
+            page:page,
+            totalPages:totalPages,
             result:result
         })
     })
 };
 
-exports.eventsList=function (req,res) {
-    res.send("这是eventslist");
+
+exports.storiesList=function (req,res) {
+    sql="SELECT name,cover FROM dnfstory";
+    connection.query(sql,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        res.render("storylist",{
+            user:req.session.user,
+            result:result
+        })
+    })
 };
 
 //----------------------------------------------------人物相关------------------------------------------------
@@ -167,12 +196,7 @@ exports.character = function (req,res) {
         //-----将角色的对话根据段落拆分---------
         if(result[0].dialog && result[0].dialog!==""){
             var findDialog = result[0].dialog.split("\r\n");
-            var filteredDialog = [];
-            for(var i=0;i<findDialog.length;i++){
-                if(findDialog[i]!=""){                //将非空元素传入新数组
-                    filteredDialog.push(findDialog[i]);
-                }
-            }
+            var filteredDialog = findDialog.filter(function (value) { return value!="" });
 
             // console.log(filteredDialog.length);
             result[0].dialog = filteredDialog;
@@ -218,6 +242,7 @@ exports.modifyGeography = function (req,res) {
         }
         console.log("查找到地理，进入修改："+modifyName);
         res.render("geographyModify",{
+            user:req.session.user,
             result:result
         })
     })
@@ -253,6 +278,7 @@ exports.geography = function (req,res) {
         }
         console.log("查找到地理："+searchName);
         res.render("geography",{
+            user:req.session.user,
             result:result
         })
     });
@@ -277,21 +303,23 @@ exports.search = function (req,res) {
             break;
         case "dungeon":
             searchTablet = "dnfDungeon";
+            renderPage = "dungeonlist";
             break;
         case "events":
-            searchTablet = "dnfEvents";
+            searchTablet = "dnfstory";
+            renderPage = "storylist";
             break;
     }
     sql = "SELECT * FROM "+searchTablet+" WHERE "+searchType2+" LIKE ?";
 
-    var searchPara = [searchInfo];
-    connection.query(sql,searchPara,function (err,result) {
+    connection.query(sql,searchInfo,function (err,result) {
         if(err){
             console.log("ERROR:"+err.message);
             return;
         }
         console.log("------------输出查找结果-----------");
         res.render(renderPage,{
+            user:req.session.user,
             result:result
         })
     })
@@ -331,7 +359,8 @@ exports.modifyDungeon=function (req,res) {
             return;
         }
         console.log("查找到地下城，进入修改："+modifyName);
-        res.render("geographyModify",{
+        res.render("dungeonModify",{
+            user:req.session.user,
             result:result
         })
     })
@@ -366,10 +395,89 @@ exports.dungeon = function (req,res) {
         }
         console.log("查找到地下城："+searchName);
         res.render("dungeon",{
+            user:req.session.user,
             result:result
         })
     })
 };
+
+//--------------------------------------------------故事相关----------------------------------------------------
+
+exports.uploadStory=function (req,res) {
+    res.sendFile(__dirname+"/uploadStories.html");
+};
+
+exports.uploadStoryHandler=function (req,res) {
+    var Sname = req.body.storyName;
+    var Scover = req.body.storyCover;
+    var Scontent = req.body.storyContent;
+    sql = "INSERT INTO dnfstory(name,cover,content) VALUES(?,?,?)";
+    var addPara = [Sname,Scover,Scontent];
+    connection.query(sql,addPara,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("------------INSERT SUCCESS------------");
+    });
+    res.redirect("/admin/uploadStory");
+};
+exports.modifyStory = function (req,res) {
+    var modifyName = req.params.name;
+    sql = "SELECT * FROM dnfstory WHERE name=?";
+    connection.query(sql,modifyName,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("查找到故事，进入修改");
+        res.render("storyModify",{
+            user:req.session.user,
+            result:result
+        })
+    })
+};
+exports.modifyStoryHandler = function (req,res) {
+    var SID = req.body.storyID;
+    var Sname = req.body.storyName;
+    var Scover = req.body.storyCover;
+    var Scontent = req.body.storyContent;
+    sql = "UPDATE dnfstory SET name=?,cover=?,content=? WHERE id=?";
+    var modifyPara = [Sname,Scover,Scontent,SID];
+    connection.query(sql,modifyPara,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("修改成功");
+    });
+    res.redirect("/admin/uploadStory");
+};
+
+exports.story=function (req,res) {
+    var searchName = req.params.name;
+    sql = "SELECT * FROM dnfstory WHERE name=?";
+    connection.query(sql,searchName,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        //切割故事对话
+        var storyContent=result[0].content;
+        var contentArr = storyContent.split("\r\n");
+        contentArr = contentArr.filter(function (value) { return value!="" });
+        for(var i=0;i<contentArr.length;i++){
+            contentArr[i]=contentArr[i].split("$say:");
+        }
+        result[0].content = contentArr;
+
+        res.render('story',{
+            user:req.session.user,
+            result:result
+        })
+    })
+};
+
 //-------------------------------------分类-----------------------------
 exports.sortCharacter = function (req,res) {
     var range="";
@@ -385,12 +493,12 @@ exports.sortCharacter = function (req,res) {
             res.json(result);
         });
     }
-    //遍历get请求里的对象
+
     else{
         for(var key in req.query){
             var partsql="";
             if(req.query.hasOwnProperty(key)){
-                //若为数组（即出现了多选），则在mysql语句添加OR；若不为数组（即只有单选，此时为字符串），则不添加OR
+
                 if(req.query[key] instanceof Array){
                     for(var i=0;i<req.query[key].length;i++){
                         if(i>0){
@@ -405,7 +513,7 @@ exports.sortCharacter = function (req,res) {
                     partsql = partsql+key+"="+"'"+req.query[key]+"'";
                 }
             }
-            //将查询每一个key对应的mysql语句推入到一个数组之内
+
             arr2.push(partsql);
         }
         //拼接mysql语句
@@ -429,7 +537,29 @@ exports.sortCharacter = function (req,res) {
     }
 };
 
-//--------------登陆及注册----------------
+//--------------注册及登录----------------
+exports.checkDuplication=function (req,res) {
+    var nameNow = req.query.username;
+    sql="SELECT username FROM users WHERE username=?";
+    connection.query(sql,nameNow,function (err,result) {
+        if(err){
+            console.log(err.message);
+            return;
+        }
+        console.log(result[0]);
+        if(result[0]==undefined){
+            res.json({
+                existed:false
+            });
+        }
+        else{
+            res.json({
+                existed:true
+            });
+        }
+    })
+};
+
 exports.register = function (req,res) {
     var Uname = req.body.registerUsername;
     var Upassword = req.body.registerPassword;
@@ -439,6 +569,7 @@ exports.register = function (req,res) {
     connection.query(sql,Uname,function (err,result) {
         if(err){
             console.log(err.message);
+            return;
         }
         // console.log(result);
         if(result!=""){
@@ -456,13 +587,11 @@ exports.register = function (req,res) {
             console.log("genSalt Error:"+err.message);
             return;
         }
-        console.log(Upassword);
         bcrypt.hash(Upassword,salt,function (err,hash) {
             if(err){
                 console.log("hash Error:"+err.message);
                 return;
             }
-            console.log(hash);
             Upassword = hash;
 
             console.log(Upassword);
@@ -475,7 +604,6 @@ exports.register = function (req,res) {
                 }
                 console.log("------REGISTER SUCCESS----");
             });
-
         })
     });
     res.redirect("/");
@@ -496,8 +624,8 @@ exports.login = function (req,res) {
         }
         else{
             bcrypt.compare(Upassword,result[0].password,function (err,isMatch) {
-                console.log("比较完成");
-                console.log(isMatch);
+                // console.log("比较完成");
+                // console.log(isMatch);
                 if(err){
                     console.log(err.message);
                     return;
@@ -506,7 +634,8 @@ exports.login = function (req,res) {
                     console.log("登录成功");
                     req.session.user = {
                         username:Uname,
-                        password:result[0].password
+                        password:result[0].password,
+                        permission:result[0].permission
                     };
                     res.redirect("/");
                 }
@@ -524,4 +653,18 @@ exports.logout =function (req,res) {
     delete req.session.user;
     res.redirect('/');
 };
+//----------------------检查登录状态-------------------------
+exports.checkUserState=function (req,res,next) {
+    if(!req.session.user){
+        return res.redirect("/");
+    }
+    next();
+};
 
+exports.checkUserPermission=function (req,res,next) {
+    var _user = req.session.user;
+    if(_user.permission<10){
+        return res.send("你没有权限进入该页面！");
+    }
+    next();
+};

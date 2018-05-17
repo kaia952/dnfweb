@@ -1,0 +1,19 @@
+.paragraph{
+  width:90%;
+  background:rgba(110,80,80,0.7);
+  margin-top: 10px;
+}
+.story-speaker{
+  width:50px;
+  img{
+    vertical-align: center;
+    width:50px;
+  }
+}
+.story-dialog{
+  padding-left: 10px;
+  p{
+    display: block;
+    vertical-align: center;
+  }
+}

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>上传地下城</title>
+    <link href="/public/css/reset.css" rel="stylesheet">
+    <link href="/public/css/common.css" rel="stylesheet">
     <style type="text/css">
         span{
             margin-left: 20px;
@@ -15,13 +17,15 @@
     </style>
 </head>
 <body>
-<form action="http://127.0.0.1:8081/admin/uploadNewDungeon" method="post">
-    <span>地下城名字</span><input type="text" name="dungeonName" id="dungeonName"><br />
-    <span>位置</span><input type="text" name="dungeonPosition" id="dungeonPosition"><br />
-    <span>图片</span><input type="text" name="dungeonImg" id="dungeonImg"><br />
-    <span>首领</span><input type="text" name="dungeonBoss" id="dungeonBoss"><br />
-    <span>详细信息</span><textarea name="dungeonIntro" id="dungeonIntro" rows="20" cols="50"></textarea><br />
-    <input type="submit" value="提交">
-</form>
+<div class="main-container">
+    <form action="http://127.0.0.1:8081/admin/uploadNewDungeon" method="post">
+        <span>地下城名字</span><input type="text" name="dungeonName" id="dungeonName"><br />
+        <span>位置</span><input type="text" name="dungeonPosition" id="dungeonPosition"><br />
+        <span>图片</span><input type="text" name="dungeonImg" id="dungeonImg"><br />
+        <span>首领</span><input type="text" name="dungeonBoss" id="dungeonBoss"><br />
+        <span>详细信息</span><textarea name="dungeonIntro" id="dungeonIntro" rows="20" cols="50"></textarea><br />
+        <input type="submit" value="提交">
+    </form>
+</div>
 </body>
 </html>
