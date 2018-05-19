@@ -38,7 +38,7 @@ html
                     each story in result
                         tr(class="dungeon-id-"+story.id)
                             td
-                                a(href="http://127.0.0.1:8081/story/#{story.name}") #{story.name}
+                                a(href="/story/#{story.name}") #{story.name}
                             td
                                 img(src=story.cover)
             span(id="inside")

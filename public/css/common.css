@@ -13,6 +13,8 @@ a {
   margin: 0 auto;
   min-height: 800px;
   background: rgba(50, 50, 50, 0.8);
+  -webkit-box-shadow: 0 0 20px #fff;
+  -moz-box-shadow: 0 0 20px #fff;
   box-shadow: 0 0 20px #fff;
   padding: 50px 0;
 }
@@ -45,6 +47,10 @@ header {
   line-height: 50px;
   text-align: center;
   cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
 }
 .header-list li.header-username {
@@ -140,6 +146,7 @@ header {
   top: 0;
   z-index: 19;
   opacity: 0.6;
+  filter: Alpha(opacity=60);
   display: none;
 }
 

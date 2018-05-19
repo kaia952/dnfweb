@@ -28,14 +28,14 @@ html
                 if (user)
                     if (user.permission>=10)
                         a.addNew(href="/admin/uploadGeography") 添加新地理
-                a.returnIndex(href="http://127.0.0.1:8081") 返回首页
+                a.returnIndex(href="") 返回首页
             div.world-map
                 img(src="/public/img/world/worldmap.png", width="800", height="600", alt="world", usemap="#worldmap")
                 map(name="worldmap")
-                    area(shape="rect", coords="150,365,800,600", alt="arad", href="http://127.0.0.1:8081/geography/阿拉德大陆")
-                    area(shape="rect", coords="0,365,135,600", alt="arad", href="http://127.0.0.1:8081/geography/镜像阿拉德")
-                    area(shape="rect", coords="0,145,800,320", alt="arad", href="http://127.0.0.1:8081/geography/天界")
-                    area(shape="rect", coords="0,0,800,140", alt="arad", href="http://127.0.0.1:8081/geography/魔界")
+                    area(shape="rect", coords="150,365,800,600", alt="arad", href="/geography/阿拉德大陆")
+                    area(shape="rect", coords="0,365,135,600", alt="arad", href="/geography/镜像阿拉德")
+                    area(shape="rect", coords="0,145,800,320", alt="arad", href="/geography/天界")
+                    area(shape="rect", coords="0,0,800,140", alt="arad", href="/geography/魔界")
             div.ps 注：图片可以点击哦
             table.list-table
                 thead
@@ -46,7 +46,7 @@ html
                     each geography in result
                         tr(class="geography-id-"+geography.id)
                             td
-                                a(href="http://127.0.0.1:8081/geography/#{geography.name}") #{geography.name}
+                                a(href="/geography/#{geography.name}") #{geography.name}
                             td #{geography.type}
             span(id="inside")
         script(src="/public/js/backToPrev.js")

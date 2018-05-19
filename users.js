@@ -1,4 +1,3 @@
-var sql;
 var connection = require('./mysqlConfig');
 connection.connect();
 var bcrypt = require('bcrypt');
@@ -11,6 +10,7 @@ exports.Index= function (req,res) {
 };
 
 exports.characterList=function (req,res) {
+    var sql;
     if(!req.params.page){
         res.redirect("/characterlist/1");
         return;
@@ -44,6 +44,7 @@ exports.characterList=function (req,res) {
 };
 
 exports.geographyList = function (req,res) {
+    var sql;
     sql = "SELECT * FROM dnfgeography";
     connection.query(sql,function (err,result) {
         if(err){
@@ -59,6 +60,7 @@ exports.geographyList = function (req,res) {
 };
 
 exports.dungeonList=function (req,res) {
+    var sql;
     if(!req.params.page){
         return res.redirect("./dungeonlist/1");
     }
@@ -93,6 +95,7 @@ exports.dungeonList=function (req,res) {
 
 
 exports.storiesList=function (req,res) {
+    var sql;
     sql="SELECT name,cover FROM dnfstory";
     connection.query(sql,function (err,result) {
         if(err){
@@ -112,6 +115,7 @@ exports.uploadCharacter = function (req,res) {
 };
 
 exports.uploadCharacterHandler = function (req,res) {
+    var sql;
     var Cname = req.body.characterName;
     var Cspecies = req.body.characterSpecies;
     var Cgender = req.body.characterGender;
@@ -141,6 +145,7 @@ exports.uploadCharacterHandler = function (req,res) {
 };
 
 exports.modifyCharacter = function (req,res) {
+    var sql;
     var modifyName = req.params.name;
     sql= "SELECT * FROM dnfCharacter WHERE name=?";
     connection.query(sql,modifyName,function (err,result) {
@@ -157,6 +162,7 @@ exports.modifyCharacter = function (req,res) {
 };
 
 exports.modifyCharacterHandler = function (req,res) {
+    var sql;
     var CID = req.body.characterID;
     var Cname = req.body.characterName;
     var Cspecies = req.body.characterSpecies;
@@ -184,6 +190,7 @@ exports.modifyCharacterHandler = function (req,res) {
 };
 
 exports.character = function (req,res) {
+    var sql;
     var searchName = req.params.name;
     sql = "SELECT * FROM dnfCharacter WHERE name=?";
     connection.query(sql,searchName,function (err,result) {
@@ -214,6 +221,7 @@ exports.uploadGeography = function (req,res) {
 };
 
 exports.uploadGeographyHandler =function (req,res) {
+    var sql;
     var Gname = req.body.geographyName;
     var Gtype = req.body.geographyType;
     var Gimg = req.body.geographyImg;
@@ -233,6 +241,7 @@ exports.uploadGeographyHandler =function (req,res) {
 };
 
 exports.modifyGeography = function (req,res) {
+    var sql;
     var modifyName = req.params.name;
     sql="SELECT * FROM dnfgeography WHERE name=?";
     connection.query(sql,modifyName,function (err,result) {
@@ -249,6 +258,7 @@ exports.modifyGeography = function (req,res) {
 };
 
 exports.modifyGeographyHandler = function (req,res) {
+    var sql;
     var GID = req.body.geographyID;
     var Gname = req.body.geographyName;
     var Gtype = req.body.geographyType;
@@ -269,6 +279,7 @@ exports.modifyGeographyHandler = function (req,res) {
 };
 
 exports.geography = function (req,res) {
+    var sql;
     var searchName = req.params.name;
     sql = "SELECT * FROM dnfgeography WHERE name=?";
     connection.query(sql,searchName,function (err,result) {
@@ -284,46 +295,6 @@ exports.geography = function (req,res) {
     });
 };
 
-exports.search = function (req,res) {
-    var searchType1 = req.query.searchType1;
-    var searchInfo = req.query.searchInfo;
-    searchInfo = "%"+searchInfo+"%";
-    var searchType2="name";
-    var searchTablet;
-    var renderPage;
-    switch (searchType1){
-        case "character":
-            searchTablet = "dnfCharacter";
-            searchType2 = req.query.searchTypeCharacter;
-            renderPage = "characterlist";
-            break;
-        case "geography":
-            searchTablet = "dnfGeography";
-            renderPage = "geographylist";
-            break;
-        case "dungeon":
-            searchTablet = "dnfDungeon";
-            renderPage = "dungeonlist";
-            break;
-        case "events":
-            searchTablet = "dnfstory";
-            renderPage = "storylist";
-            break;
-    }
-    sql = "SELECT * FROM "+searchTablet+" WHERE "+searchType2+" LIKE ?";
-
-    connection.query(sql,searchInfo,function (err,result) {
-        if(err){
-            console.log("ERROR:"+err.message);
-            return;
-        }
-        console.log("------------输出查找结果-----------");
-        res.render(renderPage,{
-            user:req.session.user,
-            result:result
-        })
-    })
-};
 
 //----------------------------------------------------地下城相关------------------------------------------------
 exports.uploadDungeon=function (req,res) {
@@ -331,6 +302,7 @@ exports.uploadDungeon=function (req,res) {
 };
 
 exports.uploadDungeonHandler = function (req,res) {
+    var sql;
     var Dname = req.body.dungeonName;
     var Dimg = req.body.dungeonImg;
     var Dposition = req.body.dungeonPosition;
@@ -351,6 +323,7 @@ exports.uploadDungeonHandler = function (req,res) {
 };
 
 exports.modifyDungeon=function (req,res) {
+    var sql;
     var modifyName = req.params.name;
     sql="SELECT * FROM dnfdungeon WHERE name=?";
     connection.query(sql,modifyName,function (err,result) {
@@ -367,6 +340,7 @@ exports.modifyDungeon=function (req,res) {
 };
 
 exports.modifyDungeonHandler = function (req,res) {
+    var sql;
     var DID = req.body.dungeonID;
     var Dname = req.body.dungeonName;
     var Dimg = req.body.dungeonImg;
@@ -386,6 +360,7 @@ exports.modifyDungeonHandler = function (req,res) {
 };
 
 exports.dungeon = function (req,res) {
+    var sql;
     var searchName=req.params.name;
     sql = "SELECT * FROM dnfdungeon WHERE name='"+ searchName+"'";
     connection.query(sql,function (err,result) {
@@ -408,6 +383,7 @@ exports.uploadStory=function (req,res) {
 };
 
 exports.uploadStoryHandler=function (req,res) {
+    var sql;
     var Sname = req.body.storyName;
     var Scover = req.body.storyCover;
     var Scontent = req.body.storyContent;
@@ -423,6 +399,7 @@ exports.uploadStoryHandler=function (req,res) {
     res.redirect("/admin/uploadStory");
 };
 exports.modifyStory = function (req,res) {
+    var sql;
     var modifyName = req.params.name;
     sql = "SELECT * FROM dnfstory WHERE name=?";
     connection.query(sql,modifyName,function (err,result) {
@@ -438,6 +415,7 @@ exports.modifyStory = function (req,res) {
     })
 };
 exports.modifyStoryHandler = function (req,res) {
+    var sql;
     var SID = req.body.storyID;
     var Sname = req.body.storyName;
     var Scover = req.body.storyCover;
@@ -455,6 +433,7 @@ exports.modifyStoryHandler = function (req,res) {
 };
 
 exports.story=function (req,res) {
+    var sql;
     var searchName = req.params.name;
     sql = "SELECT * FROM dnfstory WHERE name=?";
     connection.query(sql,searchName,function (err,result) {
@@ -477,9 +456,51 @@ exports.story=function (req,res) {
         })
     })
 };
+//------------------------首页搜索功能------------------------
+exports.search = function (req,res) {
+    var sql;
+    var searchType1 = req.query.searchType1;
+    var searchInfo = req.query.searchInfo;
+    searchInfo = "%"+searchInfo+"%";
+    var searchType2="name";
+    var searchTablet;
+    var renderPage;
+    switch (searchType1){
+        case "character":
+            searchTablet = "dnfCharacter";
+            searchType2 = req.query.searchTypeCharacter;
+            renderPage = "characterlist";
+            break;
+        case "geography":
+            searchTablet = "dnfGeography";
+            renderPage = "geographylist";
+            break;
+        case "dungeon":
+            searchTablet = "dnfDungeon";
+            renderPage = "dungeonlist";
+            break;
+        case "story":
+            searchTablet = "dnfstory";
+            renderPage = "storylist";
+            break;
+    }
+    sql = "SELECT * FROM "+searchTablet+" WHERE "+searchType2+" LIKE ?";
 
+    connection.query(sql,searchInfo,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("------------输出查找结果-----------");
+        res.render(renderPage,{
+            user:req.session.user,
+            result:result
+        })
+    })
+};
 //-------------------------------------分类-----------------------------
 exports.sortCharacter = function (req,res) {
+    var sql;
     var range="";
     var arr2=[];
     //存在searchall则判断为没有选中任何分类标签，全部显示
@@ -537,8 +558,9 @@ exports.sortCharacter = function (req,res) {
     }
 };
 
-//--------------注册及登录----------------
+//---------------------注册及登录----------------------
 exports.checkDuplication=function (req,res) {
+    var sql;
     var nameNow = req.query.username;
     sql="SELECT username FROM users WHERE username=?";
     connection.query(sql,nameNow,function (err,result) {
@@ -561,6 +583,7 @@ exports.checkDuplication=function (req,res) {
 };
 
 exports.register = function (req,res) {
+    var sql;
     var Uname = req.body.registerUsername;
     var Upassword = req.body.registerPassword;
     var UconfirmPassword = req.body.confirmPassword;
@@ -610,6 +633,7 @@ exports.register = function (req,res) {
 };
 
 exports.login = function (req,res) {
+    var sql;
     var Uname = req.body.loginUsername;
     var Upassword = req.body.loginPassword;
     sql = "SELECT * FROM users WHERE username=?";
@@ -667,4 +691,104 @@ exports.checkUserPermission=function (req,res,next) {
         return res.send("你没有权限进入该页面！");
     }
     next();
+};
+
+
+//-----------------管理用户-----------------------
+exports.userManage = function (req,res) {
+    var _user = req.session.user;
+    if(_user.permission<20){
+        return res.send("你没有权限进入该页面！");
+    }
+
+    var sql;
+
+    if(!req.params.page){
+        res.redirect("/admin/userManage/1");
+        return;
+    }
+    var page=req.params.page;
+    var totalPages;
+    var userPerPage=8;
+
+    sql = "SELECT username FROM users";
+    connection.query(sql,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        totalPages = Math.ceil(result.length/userPerPage);
+    });
+    sql = "SELECT * FROM users LIMIT "+userPerPage+" OFFSET "+ (page-1)*userPerPage;
+    connection.query(sql,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("-------加载用户列表-------");
+        res.render("userlist",{
+            page:page,
+            totalPages:totalPages,
+            user:req.session.user,
+            result:result
+        })
+    });
+};
+
+exports.deleteUser=function (req,res) {
+    var sql;
+    var _user = req.session.user;
+    if(_user.permission<20){
+        return res.send("你没有权限进入该页面！");
+    }
+    var id = req.query.id;
+    sql="DELETE FROM users WHERE id=?";
+    connection.query(sql,id,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("--------DELETE USER SUCCESS---------");
+        res.redirect("/admin/userManage");
+    })
+};
+
+exports.changePermission=function (req,res) {
+    var sql;
+    var _user=req.session.user;
+    if(_user.permission<20){
+        return res.send("你没有权限进入该页面！");
+    }
+    var id = req.query.id;
+    sql="SELECT id,username,permission FROM users WHERE id=?";
+    connection.query(sql,id,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        res.render('changePermission',{
+            user:req.session.user,
+            result:result
+        })
+    })
+};
+
+exports.modifyPermissionHandler=function (req,res) {
+    var sql;
+    var _user = req.session.user;
+    if(_user.permission<20){
+        return res.send("你没有权限进入该页面！");
+    }
+    var UID = req.body.userID;
+    var permission = req.body.userPermission;
+    sql = "UPDATE users SET permission=? WHERE id=?";
+    var modifyPara = [permission,UID];
+    connection.query(sql,modifyPara,function (err,result) {
+        if(err){
+            console.log("ERROR:"+err.message);
+            return;
+        }
+        console.log("------CHANGE PERMISSION SUCCESS------");
+        res.redirect("/admin/userManage");
+    })
 };

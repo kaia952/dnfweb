@@ -40,7 +40,7 @@ html
                     each dungeon in result
                         tr(class="dungeon-id-"+dungeon.id)
                             td
-                                a(href="http://127.0.0.1:8081/dungeon/#{dungeon.name}") #{dungeon.name}
+                                a(href="/dungeon/#{dungeon.name}") #{dungeon.name}
                             td
                                 img(src=dungeon.imgsrc)
                             td #{dungeon.position}

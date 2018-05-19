@@ -3,7 +3,6 @@ html
     head
         meta(charset="utf-8")
         title 人物编辑
-        //link(href="/public/fruitList.css", rel="stylesheet")
         script(src="/public/js/jquery-3.3.1.min.js")
         link(href="/public/css/reset.css" rel="stylesheet")
         link(href="/public/css/common.css" rel="stylesheet")
@@ -11,7 +10,7 @@ html
         div.main-container(style="color:#fff")
             h1 人物编辑页
             each character in result
-                form(method="post", action="http://127.0.0.1:8081/admin/modifyExistCharacter")
+                form(method="post", action="/admin/modifyExistCharacter")
                     input(type="text", name="characterID", value=character.id, style="display:none")
                     span 角色名字：
                     input(type="text", name="characterName", value=character.name)

@@ -1,0 +1,58 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 地下城列表
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+        link(href="/public/css/page-list-common.css" rel="stylesheet")
+    body
+        header
+            div.header-returnIndex
+                a.header-returnIndex-title(href="/") DNF资料站
+                span.header-returnIndex-author made By HD(w-ww)
+            if user
+                ul.header-list
+                    li.header-username 欢迎您，#{user.username}
+                    li.header-logout
+                        a(href="/logout") 登出
+            else
+                ul.header-list
+                    li.header-login 登录
+                    li.header-register 注册
+        div.main-container
+            div.page-list-title.clearfix
+                h1 用户列表页
+                a.returnIndex(href="/") 返回首页
+            table.list-table
+                thead
+                    tr
+                        th(class="userlist-id") id
+                        th(class="userlist-username") 用户名
+                        th(class="userlist-password") 密码
+                        th(class="userlist-permission") 权限
+                        th(class="userlist-control") 操作
+                tbody
+                    each _user in result
+                        tr(class="user-id-"+_user.id)
+                            td #{_user.id}
+                            td #{_user.username}
+                            td #{_user.password}
+                            td #{_user.permission}
+                            td
+                                a(href="/admin/deleteUser?id="+_user.id) 删除
+                                span &nbsp;
+                                a(href="/admin/changePermission?id="+_user.id) 更改权限
+            div.pageControl
+                button(type="button", id="prevPage") 上一页
+                input(type="number", value=page, id="pageInput")
+                span.white-span 共
+                span#totalPages.white-span #{totalPages}
+                span.white-span 页
+                button(type="button", id="nextPage") 下一页
+                button(type="button", id="jumpPage") 跳转
+            span(id="inside")
+        script(src="/public/js/backToPrev.js")
+        script(src="/public/js/headerControl.js")
+        script(src="/public/js/page-control.js")

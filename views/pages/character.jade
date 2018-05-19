@@ -28,8 +28,8 @@ html
                     h1 #{character.name}
                     if user
                         if (user.permission>=10)
-                            a.modifyIt(href="http://127.0.0.1:8081/admin/modifyCharacter/#{character.name}") 修改
-                    a.returnToList(href="http://127.0.0.1:8081/characterlist") 返回人物列表
+                            a.modifyIt(href="/admin/modifyCharacter/#{character.name}") 修改
+                    a.returnToList(href="/characterlist") 返回人物列表
                 div.content.clearfix
                     div.part.clearfix
                         img(src="#{character.imgsrc}")
@@ -60,7 +60,7 @@ html
                                 p.dialog-item #{dialogitem}
         div.register-window
             div.reg-log-title 注册
-            form(action="http://127.0.0.1:8081/register", method="post")
+            form(action="/register", method="post")
                 div.reg-log-body
                     span 用户名：
                     input(type="text", name="registerUsername")
@@ -74,7 +74,7 @@ html
                     input(type="submit", value="注册")
         div.login-window
             div.reg-log-title 登录
-            form(action="http://127.0.0.1:8081/login", method="post")
+            form(action="/login", method="post")
                 div.reg-log-body
                     span 用户名：
                     input(type="text", name="loginUsername")

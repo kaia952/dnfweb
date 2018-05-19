@@ -17,6 +17,9 @@ html
                     li.header-username 欢迎您，#{user.username}
                     li.header-logout
                         a(href="/logout") 登出
+                    if(user.permission>=20)
+                        li
+                            a(href="/admin/userManage") 管理用户
             else
                 ul.header-list
                     li.header-login 登录
@@ -48,14 +51,14 @@ html
                         div.select-bar-item
                         div.select-bar-item
                 div.nav-part
-                    form(action="http://127.0.0.1:8081/search", method="get")
+                    form(action="/search", method="get")
                         span 搜索：
                         input(type="text", name="searchInfo", id="searchInfo")
                         select(name="searchType1", id="searchType1")
                             option(value="character") 人物
                             option(value="geography") 地理
                             option(value="dungeon") 地下城
-                            option(value="events") 事件
+                            option(value="story") 故事
                         select(name="searchTypeCharacter", id="searchTypeCharacter")
                             option(value="name") 名字
                             option(value="species") 种族
@@ -66,39 +69,39 @@ html
                 div.option-wrapper.character
                     div.option-title
                     div.link-img
-                        a(href="http://127.0.0.1:8081/characterlist")
+                        a(href="/characterlist")
                     div.summary
                         span 你想了解的有关<br />阿拉德的人物...
                     div.more
-                        a(href="http://127.0.0.1:8081/characterlist") 查看更多
+                        a(href="/characterlist") 查看更多
                 div.option-wrapper.geography
                     div.option-title
                     div.link-img
-                        a(href="http://127.0.0.1:8081/geographylist")
+                        a(href="/geographylist")
                     div.summary
                         span 你想了解的有关<br />阿拉德的地理...
                     div.more
-                        a(href="http://127.0.0.1:8081/geographylist") 查看更多
+                        a(href="/geographylist") 查看更多
                 div.option-wrapper.dungeon
                     div.option-title
                     div.link-img
-                        a(href="http://127.0.0.1:8081/dungeonlist")
+                        a(href="/dungeonlist")
                     div.summary
                         span 你想了解的有关<br />阿拉德的地下城...
                     div.more
-                        a(href="http://127.0.0.1:8081/dungeonlist") 查看更多
+                        a(href="/dungeonlist") 查看更多
                 div.option-wrapper.stories
                     div.option-title
                     div.link-img
-                        a(href="http://127.0.0.1:8081/storieslist")
+                        a(href="/storieslist")
                     div.summary
                         span 你想了解的有关<br />阿拉德的故事...
                     div.more
-                        a(href="http://127.0.0.1:8081/storieslist") 查看更多
+                        a(href="/storieslist") 查看更多
 
         div.register-window
             div.reg-log-title 注册
-            form(action="http://127.0.0.1:8081/register", method="post")
+            form(action="/register", method="post")
                 div.reg-log-body
                     span 用户名：
                     input(type="text", name="registerUsername", required)
@@ -114,7 +117,7 @@ html
             div.close-btn.reg-close-btn x
         div.login-window
             div.reg-log-title 登录
-            form(action="http://127.0.0.1:8081/login", method="post")
+            form(action="/login", method="post")
                 div.reg-log-body
                     span 用户名：
                     input(type="text", name="loginUsername", required)

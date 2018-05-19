@@ -28,8 +28,8 @@ html
                     h1 #{story.name}
                     if user
                         if (user.permission >= 10)
-                            a.modifyIt(href="http://127.0.0.1:8081/admin/modifyStory/#{story.name}") 修改
-                    a.returnToList(href="http://127.0.0.1:8081/storieslist") 返回地理列表
+                            a.modifyIt(href="/admin/modifyStory/#{story.name}") 修改
+                    a.returnToList(href="/storieslist") 返回地理列表
                 div.content.clearfix
                     div.part.clearfix
                         img(src="#{story.cover}")

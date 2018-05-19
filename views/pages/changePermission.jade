@@ -1,0 +1,23 @@
+doctype
+html
+    head
+        meta(charset="utf-8")
+        title 地下城编辑
+        script(src="/public/js/jquery-3.3.1.min.js")
+        link(href="/public/css/reset.css" rel="stylesheet")
+        link(href="/public/css/common.css" rel="stylesheet")
+    body
+        div.main-container
+            h1 用户权限编辑页
+            each _user in result
+                form(method="post", action="/admin/modifyUserPermission")
+                    input(type="text", name="userID", value=_user.id, style="display:none")
+                    span 用户名：
+                    input(type="text", name="userName", value=_user.username, readonly)
+                    <br />
+                    span 权限：
+                    input(type="number", name="userPermission", value=_user.permission)
+                    <br />
+                    input(type="submit")
+
+

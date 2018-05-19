@@ -69,7 +69,7 @@ html
                     each character in result
                         tr(class="character-id-"+character.id)
                             td
-                                a(href="http://127.0.0.1:8081/character/#{character.name}") #{character.name}
+                                a(href="/character/#{character.name}") #{character.name}
                             td #{character.species}
                             td #{character.gender}
                             td
@@ -88,7 +88,7 @@ html
             div(id="inside")
         div.register-window
             div.reg-log-title 注册
-            form(action="http://127.0.0.1:8081/register", method="post")
+            form(action="/register", method="post")
                 div.reg-log-body
                     span 用户名：
                     input(type="text", name="registerUsername")
@@ -102,7 +102,7 @@ html
                     input(type="submit", value="注册")
         div.login-window
             div.reg-log-title 登录
-            form(action="http://127.0.0.1:8081/login", method="post")
+            form(action="/login", method="post")
                 div.reg-log-body
                     span 用户名：
                     input(type="text", name="loginUsername")

@@ -1,8 +1,4 @@
-@mixin box-sizing($sizing){
-  -webkit-box-sizing: $sizing;
-  -moz-box-sizing: $sizing;
-  box-sizing: $sizing;
-}
+@import "self-prefixer";
 //--------------列表页通用大标题和文字--------------
 .page-list-title{
   width:90%;
