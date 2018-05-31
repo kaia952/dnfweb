@@ -2,6 +2,7 @@ doctype
 html
     head
         meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
         title 人物列表
         script(src="/public/js/jquery-3.3.1.min.js")
         link(href="/public/css/reset.css" rel="stylesheet")
@@ -68,15 +69,15 @@ html
                 tbody
                     each character in result
                         tr(class="character-id-"+character.id)
-                            td
+                            td(class="characterList-name")
                                 a(href="/character/#{character.name}") #{character.name}
-                            td #{character.species}
-                            td #{character.gender}
-                            td
+                            td(class="characterList-species") #{character.species}
+                            td(class="characterList-gender") #{character.gender}
+                            td(class="characterList-img")
                                 img(src="#{character.imgsrc}")
-                            td #{character.faction}
-                            td #{character.position}
-                            td #{character.summary}
+                            td(class="characterList-faction") #{character.faction}
+                            td(class="characterList-position") #{character.position}
+                            td(class="characterList-summary") #{character.summary}
             div.pageControl
                 button(type="button", id="prevPage") 上一页
                 input(type="number", value=page, id="pageInput")

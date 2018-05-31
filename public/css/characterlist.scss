@@ -25,6 +25,7 @@
   background:#eee;
   float:left;
   margin-left: 10px;
+  margin-top: 2px;
   border-radius:4px;
   cursor:pointer;
   font-weight: bold;
@@ -41,4 +42,22 @@
   margin-left: 10px;
   border-radius:2px;
   color:#eee;
+}
+
+@media screen and (max-width: 1100px){
+  .sort-description{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .characterList-summary{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .characterList-summary,.characterList-position,.characterList-faction{
+    display: none;
+  }
 }

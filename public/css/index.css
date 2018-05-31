@@ -8,20 +8,37 @@
   text-align: center;
 }
 
+@media screen and (max-width: 1200px) {
+  .title {
+    width: 100%;
+  }
+}
 .options-link {
   width: 1200px;
   height: 600px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .option-wrapper {
   width: 250px;
   height: 500px;
-  margin: 40px 0 40px 40px;
+  margin: 40px 0 40px 0;
   float: left;
   background: url("/public/img/bg1.png") no-repeat;
   background-size: 100% 100%;
 }
 
+@media screen and (max-width: 1200px) {
+  .option-wrapper {
+    float: none;
+  }
+
+  .options-link {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
 .character .link-img {
   background: url("/public/img/dvildom.png") -100px -100px;
   background-size: 600px 450px;
@@ -104,6 +121,11 @@
   height: 290px;
 }
 
+@media screen and (max-width: 980px) {
+  .middle-part {
+    height: auto;
+  }
+}
 .img-roll-container {
   width: 450px;
   height: 270px;
@@ -152,9 +174,17 @@
   background: #999;
 }
 
+@media screen and (max-width: 980px) {
+  .img-roll-container {
+    transform: scale(0.7);
+    margin-left: 0;
+    float: none;
+  }
+}
 .nav-part {
-  height: 270px;
+  height: 100px;
   margin-left: 80px;
+  margin-top: 40px;
   float: left;
   color: #fff;
 }
@@ -167,6 +197,12 @@
 
 #searchInfo {
   height: 21px;
+}
+
+@media screen and (max-width: 980px) {
+  .nav-part {
+    float: none;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

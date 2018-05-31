@@ -79,13 +79,13 @@ $(document).ready(function () {
         $(".character-table:eq(0) tbody").empty();
         for(var i=0;i<data.length;i++){
             var tr = $("<tr></tr>");
-            var appendName = $("<td></td>").html("<a href='http://127.0.0.1:8081/character/"+data[i].name+"'>"+data[i].name+"</a>");
-            var appendSpecies = $("<td></td>").text(data[i].species);
-            var appendGender = $("<td></td>").text(data[i].gender);
-            var appendImg = $("<td></td>").html("<img src='" +data[i].imgsrc +"'>");
-            var appendFaction = $("<td></td>").text(data[i].faction);
-            var appendPosition = $("<td></td>").text(data[i].position);
-            var appendSummary = $("<td></td>").text(data[i].summary);
+            var appendName = $("<td class='characterList-name'></td>").html("<a href='http://127.0.0.1:8081/character/"+data[i].name+"'>"+data[i].name+"</a>");
+            var appendSpecies = $("<td class='characterList-species'></td>").text(data[i].species);
+            var appendGender = $("<td class='characterList-gender'></td>").text(data[i].gender);
+            var appendImg = $("<td class='characterList-img'></td>").html("<img src='" +data[i].imgsrc +"'>");
+            var appendFaction = $("<td class='characterList-faction'></td>").text(data[i].faction);
+            var appendPosition = $("<td class='characterList-position'></td>").text(data[i].position);
+            var appendSummary = $("<td class='characterList-summary'></td>").text(data[i].summary);
             tr.append(appendName,appendSpecies,appendGender,appendImg,appendFaction,appendPosition,appendSummary);
             $(".character-table:eq(0)").append(tr);
         }

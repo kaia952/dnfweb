@@ -53,6 +53,12 @@ table.list-table{
   }
 }
 
+@media screen and (max-width: 1100px){
+  table.list-table{
+    width:100%;
+  }
+}
+
 //--------------列表页分页部分样式-----------------
 .pageControl{
   width:300px;

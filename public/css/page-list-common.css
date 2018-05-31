@@ -53,6 +53,11 @@ table.list-table img {
   width: 130px;
 }
 
+@media screen and (max-width: 1100px) {
+  table.list-table {
+    width: 100%;
+  }
+}
 .pageControl {
   width: 300px;
   margin: 10px auto;

@@ -22,6 +22,12 @@
   color: #fff;
 }
 
+@media screen and (max-width: 480px) {
+  .page-detail-title {
+    padding-top: 80px;
+    margin-left: 10px;
+  }
+}
 .part {
   margin: 20px 50px;
   color: #eee;
